@@ -12,29 +12,17 @@ Dokumen ini berisi aturan bisnis yang menjadi dasar dalam perancangan basis data
 
 Setiap pengguna harus memiliki satu role.
 
-Reason
-
-Hak akses setiap pengguna berbeda sesuai tanggung jawabnya.
-
 ---
 
 ## BR-002
 
 Email pengguna harus unik.
 
-Reason
-
-Digunakan sebagai identitas login.
-
 ---
 
 ## BR-003
 
 Password harus disimpan dalam bentuk hash.
-
-Reason
-
-Menjaga keamanan data pengguna.
 
 ---
 
@@ -44,143 +32,141 @@ Menjaga keamanan data pengguna.
 
 Satu customer dapat memiliki banyak transaksi penjualan.
 
-Reason
+---
 
-Customer dapat melakukan pembelian lebih dari satu kali.
+## BR-005
+
+Nomor telepon customer harus unik apabila tidak kosong.
 
 ---
 
 # Category
 
-## BR-005
+## BR-006
 
 Satu kategori dapat memiliki banyak produk.
-
-Reason
-
-Produk dikelompokkan berdasarkan kategori.
 
 ---
 
 # Supplier
 
-## BR-006
+## BR-007
 
 Satu supplier dapat memasok banyak produk.
-
-Reason
-
-Supplier merupakan sumber pengadaan barang.
 
 ---
 
 # Product
 
-## BR-007
+## BR-008
 
 Setiap produk harus memiliki satu kategori.
 
 ---
 
-## BR-008
+## BR-009
 
 Setiap produk harus memiliki satu supplier.
 
 ---
 
-## BR-009
+## BR-010
 
 Kode produk harus unik.
 
 ---
 
-## BR-010
+## BR-011
 
 Harga produk tidak boleh negatif.
 
 ---
 
-## BR-011
+## BR-012
 
 Stok produk tidak boleh negatif.
 
 ---
 
-## BR-012
+## BR-013
 
 Produk tidak boleh dihapus apabila masih digunakan dalam transaksi penjualan.
-
-Reason
-
-Menjaga integritas data historis.
 
 ---
 
 # Sales
 
-## BR-013
+## BR-014
 
 Satu transaksi penjualan hanya dimiliki oleh satu customer.
 
 ---
 
-## BR-014
-
-Satu transaksi penjualan harus memiliki minimal satu detail transaksi.
-
----
-
 ## BR-015
 
-Nomor transaksi harus unik.
+Transaksi penjualan dengan status PAID harus memiliki minimal satu detail transaksi.
 
 ---
 
 ## BR-016
 
-Total transaksi dihitung dari seluruh detail penjualan.
+Nomor transaksi harus unik.
 
 ---
 
-# Sale Details
-
 ## BR-017
 
-Satu detail transaksi hanya mengacu pada satu produk.
+Total transaksi dihitung dari seluruh detail penjualan.
 
 ---
 
 ## BR-018
 
-Jumlah pembelian minimal satu.
+Status penjualan terdiri dari DRAFT, PAID, CANCELLED.
 
 ---
 
 ## BR-019
 
-Harga jual disimpan pada saat transaksi.
-
-Reason
-
-Harga produk dapat berubah sewaktu-waktu.
+Stok hanya berkurang ketika transaksi dikonfirmasi/PAID.
 
 ---
 
-# Payment
+# Sale Details
 
 ## BR-020
 
-Setiap transaksi hanya memiliki satu pembayaran.
+Satu detail transaksi hanya mengacu pada satu produk.
 
 ---
 
 ## BR-021
 
-Jumlah pembayaran harus sama dengan total transaksi.
+Jumlah pembelian minimal satu.
 
 ---
 
 ## BR-022
+
+Harga jual disimpan pada saat transaksi.
+
+---
+
+# Payment
+
+## BR-023
+
+Setiap transaksi memiliki maksimal satu pembayaran.
+
+---
+
+## BR-024
+
+Jumlah pembayaran harus sama dengan total transaksi.
+
+---
+
+## BR-025
 
 Pembayaran tidak dapat dilakukan apabila transaksi belum memiliki detail.
 
@@ -188,19 +174,19 @@ Pembayaran tidak dapat dilakukan apabila transaksi belum memiliki detail.
 
 # Inventory
 
-## BR-023
+## BR-026
 
 Stok otomatis berkurang ketika transaksi berhasil.
 
 ---
 
-## BR-024
+## BR-027
 
 Transaksi tidak boleh diproses apabila stok tidak mencukupi.
 
 ---
 
-## BR-025
+## BR-028
 
 Rollback dilakukan apabila terjadi kegagalan pada proses transaksi.
 
@@ -208,91 +194,127 @@ Rollback dilakukan apabila terjadi kegagalan pada proses transaksi.
 
 # Data Integration
 
-## BR-026
+## BR-029
 
 Import hanya menerima file CSV.
 
 ---
 
-## BR-027
+## BR-030
 
 Produk dengan kode yang sama tidak boleh dibuat dua kali.
 
 ---
 
-## BR-028
+## BR-031
 
 Seluruh proses import dicatat pada integration_logs.
 
 ---
 
+## BR-032
+
+Produk CSV dengan kode yang sudah ada akan ditolak dan dicatat sebagai gagal.
+
+---
+
 # Data Quality
 
-## BR-029
+## BR-033
 
 Nama produk tidak boleh kosong.
 
 ---
 
-## BR-030
+## BR-034
 
 Harga tidak boleh negatif.
 
 ---
 
-## BR-031
+## BR-035
 
 Stok tidak boleh negatif.
 
 ---
 
-## BR-032
+## BR-036
 
 Data yang tidak valid dicatat pada data_quality_logs.
 
 ---
 
-# Document Management
-
-## BR-033
-
-Dokumen hanya boleh bertipe PDF, DOCX, atau TXT.
-
----
-
-## BR-034
-
-Setiap dokumen memiliki versi.
-
----
-
-## BR-035
-
-Riwayat perubahan dokumen harus disimpan.
-
----
-
-## BR-036
-
-Hak akses dokumen mengikuti role pengguna.
-
----
-
-# Security
-
 ## BR-037
 
-Pengguna harus login sebelum mengakses sistem.
+Setiap masalah kualitas data memiliki root cause.
 
 ---
 
 ## BR-038
 
-Role menentukan hak akses pengguna.
+Setiap masalah kualitas data memiliki priority: LOW, MEDIUM, HIGH.
 
 ---
 
 ## BR-039
+
+Setiap koreksi data harus dicatat pada data_quality_logs.
+
+---
+
+# Document Management
+
+## BR-040
+
+Dokumen hanya boleh bertipe PDF, DOCX, atau TXT.
+
+---
+
+## BR-041
+
+Setiap dokumen memiliki versi.
+
+---
+
+## BR-042
+
+Riwayat perubahan dokumen harus disimpan.
+
+---
+
+## BR-043
+
+Hak akses dokumen mengikuti role pengguna.
+
+---
+
+## BR-044
+
+Upload dokumen dengan nama dan transaksi yang sama membuat versi baru.
+
+---
+
+## BR-045
+
+Versi dokumen tidak boleh berkurang.
+
+---
+
+# Security
+
+## BR-046
+
+Pengguna harus login sebelum mengakses sistem.
+
+---
+
+## BR-047
+
+Role menentukan hak akses pengguna.
+
+---
+
+## BR-048
 
 Session yang tidak valid harus ditolak.
 
@@ -300,12 +322,25 @@ Session yang tidak valid harus ditolak.
 
 # Audit
 
-## BR-040
+## BR-049
 
 Seluruh transaksi penting harus memiliki timestamp.
 
 ---
 
-## BR-041
+## BR-050
 
 Data created_at dan updated_at harus dicatat secara otomatis.
+
+---
+
+## BR-051
+
+Saat transaksi dikonfirmasi, data produk yang dibeli harus dikunci menggunakan row-level locking atau SELECT FOR UPDATE.
+
+---
+
+## BR-052
+
+Produk yang sudah pernah digunakan dalam transaksi tidak dihapus secara fisik, tetapi dinonaktifkan menggunakan is_active.
+

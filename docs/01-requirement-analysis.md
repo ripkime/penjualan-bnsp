@@ -56,6 +56,19 @@ Sistem yang akan dibangun bertujuan untuk:
   
 ---
 
+## Competency Mapping
+| Unit | Evidence |
+|------|----------|
+| Mendesain basis data | requirement, business rules, ERD, normalization, data dictionary |
+| Membuat basis data | database.sql, tables, constraints, indexes, seed data |
+| Integrasi data | CSV import, mapping, validation, integration logs |
+| Kualitas data | checks, root cause, priority, correction logs |
+| Dokumen & Konten | upload, metadata, versioning, access, backup |
+| SQL | DDL, DML, view, function, procedure, trigger |
+| Akses basis data | login, role, session, prepared statement, access control, database transaction |
+
+---
+
 ## Stakeholders
 
 ### Admin
@@ -75,10 +88,10 @@ Hak Akses:
 
 Hak Akses:
 
+- Melihat dan mengelola data produk operasional.
 - Mengelola transaksi penjualan.
 - Mengelola pembayaran.
-- Melihat data produk.
-- Melihat data pelanggan.
+- Melakukan import CSV.
 - Mengunggah dokumen transaksi.
 
 ---
@@ -119,6 +132,17 @@ Sistem harus mampu menyediakan fitur berikut:
 - Validasi data CSV.
 - Menyimpan log integrasi.
 
+## SQL Objects
+
+- Membuat view untuk laporan.
+- Membuat function untuk perhitungan data.
+- Membuat stored procedure untuk proses transaksi.
+- Membuat trigger untuk otomatisasi stok, total atau timestamp.
+- Menggunakan COMMIT dan ROLLBACK.
+- Menggunakan SELECT FOR UPDATE untuk penguncian stok.
+
+---
+
 ## Data Quality
 
 - Pemeriksaan kualitas data.
@@ -126,12 +150,16 @@ Sistem harus mampu menyediakan fitur berikut:
 - Koreksi data.
 - Penyimpanan log kualitas data.
 
+---
+
 ## Document Management
 
 - Upload dokumen.
 - Menyimpan metadata dokumen.
 - Versioning dokumen.
 - Pengaturan hak akses dokumen.
+
+---
 
 ## Reporting
 
@@ -169,7 +197,7 @@ Sistem harus mampu menyediakan fitur berikut:
 
 ---
 
-## Business Proccess Overview
+## Business Process Overview
 
 Alur proses bisnis utama:
 
@@ -209,6 +237,16 @@ Sistem yang dibangun diharapkan menghasilkan:
 | CSV Import | encoding/csv |
 | File Storage | Local Storage |
 
+---
 
+## Installation
+
+- Database dapat dibuat melalui file database.sql.
+- Aplikasi dapat dijalankan melalui binary Go atau `go run`.
+- Konfigurasi database disimpan pada file environment/config.
+- Seed data tersedia untuk akun Admin, Kasir, Owner.
+- Aplikasi berada dalam satu folder project.
+- Instalasi database dapat dijalankan ulang untuk kebutuhan demo.
+- File database.sql berisi schema, constraint, index, view, function, procedure, trigger, dan seed data.
 
 

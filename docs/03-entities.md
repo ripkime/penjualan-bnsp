@@ -9,7 +9,7 @@ Dokumen ini berisi daftar entity yang diperlukan untuk merancang basis data Sist
 - id
 - name
 - email
-- password
+- password_hash
 - role_id
 - is_active
 - created_at
@@ -78,6 +78,7 @@ Dokumen ini berisi daftar entity yang diperlukan untuk merancang basis data Sist
 ### Sales
 
 - id
+- transaction_no
 - customer_id
 - user_id
 - status
@@ -105,7 +106,6 @@ Dokumen ini berisi daftar entity yang diperlukan untuk merancang basis data Sist
 - id
 - sale_id
 - method
-- status
 - paid_amount
 - payment_date
 - created_at
@@ -117,23 +117,71 @@ Dokumen ini berisi daftar entity yang diperlukan untuk merancang basis data Sist
 
 - id
 - sale_id
-- uploaded_by
-- file_name
-- path
-- extension
+- title
+- created_by
 - created_at
 - updated_at
 
 ---
 
+### Document Versions
+
+- id 
+- document_id
+- version_no
+- file_name
+- path
+- extension
+- uploaded_by
+- created_at
+
+---
+
+### Document Role Permissions
+
+- id
+- role_id
+- can_view
+- can_upload
+- can_download
+- created_at
+- updated_at
+
+---
+
+### Integration Mappings
+
+- id
+- source_column
+- target_table
+- target_column
+- is_required
+- created_at
+- updated_at
+
 ### Integration Logs
 
 - id
+- imported_by
 - file_name
-- succeeded
-- failed
+- success_count
+- failed_count
 - status
 - error_message
+- created_at
+- updated_at
+
+---
+
+### Integration Log Details
+
+- id
+- integration_log_id
+- row_number
+- product_code
+- status
+- error_message
+- raw_data
 - created_at
 - updated_at
 
@@ -144,12 +192,47 @@ Dokumen ini berisi daftar entity yang diperlukan untuk merancang basis data Sist
 - id
 - table_name
 - field_name
+- record_id
 - old_value
 - new_value
 - problem_description
+- root_cause
+- priority
+- status
+- corrected_by
+- corrected_at
 - created_at
 - updated_at
 
 
+## Key Constraints
+
+### Unique Constraints
+
+- users.email unique
+- roles.name unique
+- customers.phone unique when not null
+- products.code unique
+- sales.transaction_no unique
+- payments.sale_id unique
+- document_role_permissions.role_id unique
+- document_versions unique (document_id, version_no)
+
+### Check Constraints
+
+- products.price >= 0
+- products.stock >= 0
+- sale_details.qty > 0
+- sale_details.unit_price >= 0
+- sale_details.subtotal >= 0
+- payments.paid_amount >= 0
+- sales.status in (DRAFT, PAID, CANCELLED)
+- data_quality_logs.priority in (LOW, MEDIUM, HIGH)
+- document_versions.extension in (PDF, DOCX, TXT)
+
+### Derived Values
+
+- sale_details.subtotal derived from qty * unit_price
+- sales.grand_total maintained from total sale_details.subtotal
 
 
