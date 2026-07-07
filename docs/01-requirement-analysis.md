@@ -2,14 +2,14 @@
 
 # Project Information
 
-| Item | Description |
-|------|-------------|
-| Project | Sistem Pengelolaan Data Penjualan |
-| Purpose | Membangun sistem basis data untuk mengelola proses penjualan toko secara terintegrasi. |
-| Database | PostgreSQL |
-| Programming Language | Go |
-| Database Driver | pgx |
-| Version | 1.0.0 |
+| Item                 | Description                                                                            |
+| -------------------- | -------------------------------------------------------------------------------------- |
+| Project              | Sistem Pengelolaan Data Penjualan                                                      |
+| Purpose              | Membangun sistem basis data untuk mengelola proses penjualan toko secara terintegrasi. |
+| Database             | PostgreSQL                                                                             |
+| Programming Language | Go                                                                                     |
+| Database Driver      | pgx                                                                                    |
+| Version              | 1.0.0                                                                                  |
 
 ---
 
@@ -57,15 +57,15 @@ Sistem yang akan dibangun bertujuan untuk:
 ---
 
 ## Competency Mapping
-| Unit | Evidence |
-|------|----------|
-| Mendesain basis data | requirement, business rules, ERD, normalization, data dictionary |
-| Membuat basis data | database.sql, tables, constraints, indexes, seed data |
-| Integrasi data | CSV import, mapping, validation, integration logs |
-| Kualitas data | checks, root cause, priority, correction logs |
-| Dokumen & Konten | upload, metadata, versioning, access, backup |
-| SQL | DDL, DML, view, function, procedure, trigger |
-| Akses basis data | login, role, session, prepared statement, access control, database transaction |
+| Unit                 | Evidence                                                                       |
+| -------------------- | ------------------------------------------------------------------------------ |
+| Mendesain basis data | requirement, business rules, ERD, normalization, data dictionary               |
+| Membuat basis data   | database.sql, tables, constraints, indexes, seed data                          |
+| Integrasi data       | CSV import, mapping, validation, integration logs                              |
+| Kualitas data        | checks, root cause, priority, correction logs                                  |
+| Dokumen & Konten     | upload, metadata, versioning, access, backup                                   |
+| SQL                  | DDL, DML, view, function, procedure, trigger                                   |
+| Akses basis data     | login, role, session, prepared statement, access control, database transaction |
 
 ---
 
@@ -202,10 +202,10 @@ Sistem harus mampu menyediakan fitur berikut:
 Alur proses bisnis utama:
 
 1. Admin mengelola data master.
-2. Kasir melakukan transaksi penjualan.
-3. Sistem menyimpan transaksi.
-4. Sistem mengurangi stok produk secara otomatis.
-5. Kasir melakukan pembayaran.
+2. Kasir membuat transaksi penjualan.
+3. Sistem menyimpan header dan detail transaksi.
+4. Kasir melakukan pembayaran.
+5. Sistem mengonfirmasi transaksi, menyimpan pembayaran, dan mengurangi stok dalam database transaction.
 6. Sistem menyimpan dokumen transaksi.
 7. Owner melihat laporan.
 
@@ -227,15 +227,15 @@ Sistem yang dibangun diharapkan menghasilkan:
 
 ## Technology Stack
 
-| Component | Technology |
-|-----------|------------|
-| Language | Go |
-| Database | PostgreSQL |
-| Driver | pgx |
-| SQL | PostgreSQL SQL |
+| Component      | Technology                   |
+| -------------- | ---------------------------- |
+| Language       | Go                           |
+| Database       | PostgreSQL                   |
+| Driver         | pgx                          |
+| SQL            | PostgreSQL SQL               |
 | Authentication | Session Based Authentication |
-| CSV Import | encoding/csv |
-| File Storage | Local Storage |
+| CSV Import     | encoding/csv                 |
+| File Storage   | Local Storage                |
 
 ---
 

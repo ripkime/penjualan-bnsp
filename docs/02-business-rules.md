@@ -176,7 +176,7 @@ Pembayaran tidak dapat dilakukan apabila transaksi belum memiliki detail.
 
 ## BR-026
 
-Stok otomatis berkurang ketika transaksi berhasil.
+Stok otomatis berkurang ketika transaksi dikonfirmasi/PAID dalam database transaction.
 
 ---
 
@@ -290,7 +290,7 @@ Hak akses dokumen mengikuti role pengguna.
 
 ## BR-044
 
-Upload dokumen dengan nama dan transaksi yang sama membuat versi baru.
+Upload dokumen dengan title dan transaksi yang sama membuat versi baru pada document_versions.
 
 ---
 

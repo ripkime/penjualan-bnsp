@@ -211,6 +211,7 @@ Dokumen ini berisi daftar entity yang diperlukan untuk merancang basis data Sist
 
 - users.email unique
 - roles.name unique
+- categories.name unique
 - customers.phone unique when not null
 - products.code unique
 - sales.transaction_no unique
@@ -222,12 +223,19 @@ Dokumen ini berisi daftar entity yang diperlukan untuk merancang basis data Sist
 
 - products.price >= 0
 - products.stock >= 0
+- sales.grand_total >= 0
 - sale_details.qty > 0
 - sale_details.unit_price >= 0
 - sale_details.subtotal >= 0
 - payments.paid_amount >= 0
 - sales.status in (DRAFT, PAID, CANCELLED)
+- integration_logs.success_count >= 0
+- integration_logs.failed_count >= 0
+- integration_logs.status in (PENDING, SUCCESS, PARTIAL, FAILED)
+- integration_log_details.row_number > 0
+- integration_log_details.status in (SUCCESS, FAILED)
 - data_quality_logs.priority in (LOW, MEDIUM, HIGH)
+- data_quality_logs.status in (OPEN, CORRECTED, IGNORED)
 - document_versions.extension in (PDF, DOCX, TXT)
 
 ### Derived Values

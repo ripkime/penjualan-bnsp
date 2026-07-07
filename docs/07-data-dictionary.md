@@ -215,7 +215,7 @@ Foreign Key:
 | ----------- | ------------ | ------ | -------- | -------------- | ----------------------------- |
 | id          | BIGSERIAL    | PK     | No       | auto increment | Document version ID           |
 | document_id | BIGINT       | FK     | No       | -              | Referensi ke documents.id     |
-| version_no  | INTEGER      | UNIQUE | No       | -              | Nomor versi dokumen           |
+| version_no  | INTEGER      | -      | No       | -              | Nomor versi dokumen           |
 | file_name   | VARCHAR(255) | -      | No       | -              | Nama file dokumen             |
 | path        | TEXT         | -      | No       | -              | Lokasi penyimpanan file       |
 | extension   | VARCHAR(10)  | CHECK  | No       | -              | Ekstensi file                 |
